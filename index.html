@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetreatMap</title>
+    <style>html,body{height:100%;}body{padding:0;margin:0;}h1{padding:0;margin:0;font-size:50%;}</style>
+    <link rel="stylesheet" href="css/reset.css">  
+    <link rel="stylesheet" href="css/style.css">   
+</head>
+
+<body>
+<!--ヘッダー-->
+    <div class="header">
+        <div class="nav">
+        <ul>
+            <li><a href="#rest">REST</a></li>
+            <li><a href="#recreation">RECREATION</a></li>
+            <li><a href="#relaxation">RELAXATION</a></li>
+            <li><a href="#retreat">RETREAT</a></li>
+        </ul>
+        </div>
+    </div>
+    <div class="info">
+        <ul><li><em><strong>Rest（レスト）</strong></em><br><em>英語で「休息」を指す言葉。時間の長さにかかわらず、身体を休めること。睡眠やマッサージ・ベッドでくつろぐ、といった行為が含まれます。</em></li><li><em><strong>Recreation（レクリエーション）</strong></em><br><em>余暇時間を使った娯楽や創造活動を指し、スポーツや遊び・散歩などで身体を動かすことによって気分転換をする行為。「Re（再び）create（創造する）」を繋げた言葉の語源から分かるように、気晴らしを通じて心の休養・回復を図ります。</em></li><li><em><strong>Relaxation （リラクセーション）</strong></em><br><em>ストレスによる心身の緊張を緩和するための活動のこと。ヨガや瞑想・マッサージだけでなく、目を閉じて深呼吸するだけでも効果があります。</em></li><li><em><strong>Retreatment（リトリートメント）</strong></em><br><em>いつもと違う環境に身を置き、心と身体の疲れを癒す活動。転換療法ともいわれ、特に森林のような周囲を自然に囲まれた静かな場所でゆっくりと過ごすのが効果的です。</em></li></ul>
+    <br>
+    <p>引用元： 
+        <a href="https://spaceshipearth.jp/retreat/">リトリートとは？意味や目的・メリットやおすすめ施設を紹介</a>
+    </p>
+    </div>
+
+<!-- MAP[START] -->
+<h1>リトリートマップ</h1>
+<div id="intro">
+<h4>リトリートとは、日常から離れ、あわいなものとのつながりを実感するもの。</h4>
+<h4>リトリートマップを記録し、内省を深いものにしましょう。</h4>
+</div>
+<div id="myMap"></div>
+
+<!--以下スクリプト-->>
+
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[putyourownkey]' async defer></script>
+<script src="js/BmapQuery.js"></script>
+<script type="module" src="js/main.js"></script>
+
+<script>
+
+//****************************************************************************************
+// BingMaps&BmapQuery
+//****************************************************************************************
+//Init
+
+function GetMap(){
+    //------------------------------------------------------------------------
+    //1. Instance
+    //------------------------------------------------------------------------
+    const map = new Bmap("#myMap");
+
+    //------------------------------------------------------------------------
+    //2. geolocation: Display Map
+    //------------------------------------------------------------------------
+    map.geolocation(function(data) {
+        //location
+        const lat = data.coords.latitude;
+        const lon = data.coords.longitude;
+        //Map
+        map.startMap(35.6851806,139.7074768, "load", 10); //新宿御苑
+        //pin
+
+    
+    //3. Add Pushpin-Text
+    // pinText(lat, lon, "title", "subtitle", "text");
+
+    let pin1 = map.pinText(36.3830617,137.8156405, "穂高養生園","自然豊か,30年の歴史","✨");
+    let pin2 = map.pinText(35.2976603,140.3478348, "Brown’sField","食と農の体験","✨");
+    let pin3 = map.pinText(7.5149, 134.5825, "Five Elements Adventures","中世の趣","✨");
+
+    });
+}
+</script>
+
+</body>
+</html>
